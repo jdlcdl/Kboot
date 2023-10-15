@@ -254,11 +254,11 @@ static uint32_t app_check()
 
     if (cfg_magic & CFG_APP_FLAG_SHA256) {
         // SHA256 check was requested, check flash data
-        return app_sha256();
+        if (app_sha256() == 0) return 0;
     }
     if (cfg_magic & CFG_APP_FLAG_CRC32) {
         // CRC check was requested, check flash data
-        return app_crc32();
+        if (app_crc32() == 0) return 0;
     }
     return 1;
 }
